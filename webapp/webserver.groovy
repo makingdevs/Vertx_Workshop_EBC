@@ -1,4 +1,5 @@
 import io.vertx.ext.web.Router
+import io.vertx.ext.web.handler.StaticHandler
 
 httpServer = vertx.createHttpServer()
 
@@ -21,5 +22,7 @@ def route2 = router.route("/bar").handler { routingContext ->
   response.putHeader("content-type", "text/plain")
   response.end("Hola de nuevo BAR")
 }
+
+def content = router.route("/public/*").handler(StaticHandler.create())
 
 httpServer.requestHandler(router.&accept).listen(1234)
