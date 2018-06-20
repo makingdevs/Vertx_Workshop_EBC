@@ -1,10 +1,19 @@
+import io.vertx.ext.web.Router
+
 httpServer = vertx.createHttpServer()
 
-httpServer.requestHandler { request ->
-  request
-  .response()
-  .putHeader("content-type", "text/plain")
-  .end("Hello world")
+Router router = Router.router(vertx)
+
+def route1 = router.route("/foo").handler { routingContext ->
+  def response = routingContext.response()
+  response.putHeader("content-type", "text/plain")
+  response.end("Hola de nuevo FOO")
 }
 
-httpServer.listen(1234)
+def route2 = router.route("/bar").handler { routingContext ->
+  def response = routingContext.response()
+  response.putHeader("content-type", "text/plain")
+  response.end("Hola de nuevo BAR")
+}
+
+httpServer.requestHandler(router.&accept).listen(1234)
