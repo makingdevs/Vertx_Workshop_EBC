@@ -4,10 +4,16 @@ httpServer = vertx.createHttpServer()
 
 Router router = Router.router(vertx)
 
-def route1 = router.route("/foo").handler { routingContext ->
+def route1 = router.get("/foo").handler { routingContext ->
   def response = routingContext.response()
   response.putHeader("content-type", "text/plain")
-  response.end("Hola de nuevo FOO")
+  response.end("Hola de nuevo FOO GET")
+}
+
+def route1_1 = router.post("/foo").handler { routingContext ->
+  def response = routingContext.response()
+  response.putHeader("content-type", "text/plain")
+  response.end("Hola de nuevo FOO POST")
 }
 
 def route2 = router.route("/bar").handler { routingContext ->
