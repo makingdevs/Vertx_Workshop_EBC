@@ -8,6 +8,6 @@ vertx.eventBus().consumer("mx.edu.ebc.ping") { message ->
 // estoy esperando una respuesta de quién me llama
 vertx.eventBus().consumer("mx.edu.ebc.pong") { message ->
   println message.body()
-  message.reply("Pang neodevelop!")
+  message.reply("Pang neodevelop ${new Date()}!")
 }
 
