@@ -23,6 +23,6 @@ def route2 = router.route("/bar").handler { routingContext ->
   response.end("Hola de nuevo BAR")
 }
 
-def content = router.route("/public/*").handler(StaticHandler.create())
+def content = router.route("/public/*").handler(StaticHandler.create().setCachingEnabled(false))
 
 httpServer.requestHandler(router.&accept).listen(1234)
