@@ -1,3 +1,5 @@
+package mx.edu.ebc.verticles
+
 import io.vertx.ext.web.Router
 import io.vertx.ext.web.handler.StaticHandler
 

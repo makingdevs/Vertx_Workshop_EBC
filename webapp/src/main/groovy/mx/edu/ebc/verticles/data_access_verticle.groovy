@@ -1,3 +1,5 @@
+package mx.edu.ebc.verticles
+
 import io.vertx.ext.asyncsql.MySQLClient
 
 def mySQLClientConfig = [
