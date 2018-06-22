@@ -30,4 +30,5 @@ shadowJar {
 
 run {
   args = ['run', 'mx.edu.ebc.verticles.MainVerticle']
+  //args = ['version']
 }
