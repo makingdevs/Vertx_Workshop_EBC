@@ -15,7 +15,6 @@ def mySQLClient = MySQLClient.createShared(vertx, mySQLClientConfig)
 mySQLClient.getConnection { result ->
   def connection = result.result()
   connection.query("SELECT * FROM task", { dbResult ->
-    println dbResult.properties
-    println dbResult.dump()
+    println dbResult.result()
   })
 }

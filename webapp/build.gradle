@@ -31,6 +31,12 @@ shadowJar {
 }
 
 run {
-  args = ['run', 'mx.edu.ebc.verticles.MainVerticle']
+  args = [
+    'run',
+    'mx.edu.ebc.verticles.MainVerticle',
+    "--redeploy=src/**/*",
+    "--on-redeploy='gradle classes'",
+    "--launcher=io.vertx.core.Launcher"
+  ]
   //args = ['version']
 }
