@@ -1,6 +1,7 @@
 plugins {
   id "groovy"
   id 'application'
+  id 'com.github.johnrengelman.shadow' version '2.0.4'
 }
 
 repositories {
@@ -14,4 +15,19 @@ dependencies {
   compile "io.vertx:vertx-lang-groovy:3.5.2"
   compile "io.vertx:vertx-web:3.5.2"
   compile "io.vertx:vertx-mysql-postgresql-client:3.5.2"
+}
+
+shadowJar {
+  classifier = "fat"
+  manifest {
+    attributes 'Main-Verticle': 'groovy:mx.edu.ebc.verticles.MainVerticle'
+  }
+  // NOTA: Es muy puntual de Vert.x
+  mergeServiceFiles {
+    include 'META-INF/services/io.vertx.core.spi.VerticleFactory'
+  }
+}
+
+run {
+  args = ['run', 'mx.edu.ebc.verticles.MainVerticle']
 }
