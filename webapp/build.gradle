@@ -12,6 +12,8 @@ repositories {
 mainClassName = "io.vertx.core.Launcher"
 
 dependencies {
+  compile "org.slf4j:slf4j-api:1.7.25"
+  compile "ch.qos.logback:logback-classic:1.2.3"
   compile "io.vertx:vertx-lang-groovy:3.5.2"
   compile "io.vertx:vertx-web:3.5.2"
   compile "io.vertx:vertx-mysql-postgresql-client:3.5.2"
