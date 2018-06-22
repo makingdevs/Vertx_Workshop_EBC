@@ -4,11 +4,18 @@ import io.vertx.ext.asyncsql.MySQLClient
 
 def mySQLClientConfig = [
   host: "localhost",
-  username: "makingdevs",
+  username: "root",
   password: "makingdevs",
   database: "scrumboard"
 ]
 
+
 def mySQLClient = MySQLClient.createShared(vertx, mySQLClientConfig)
 
-println mySQLClient
+mySQLClient.getConnection { result ->
+  def connection = result.result()
+  connection.query("SELECT * FROM task", { dbResult ->
+    println dbResult.properties
+    println dbResult.dump()
+  })
+}
