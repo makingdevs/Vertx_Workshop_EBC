@@ -17,6 +17,7 @@ dependencies {
   compile "io.vertx:vertx-lang-groovy:3.5.2"
   compile "io.vertx:vertx-web:3.5.2"
   compile "io.vertx:vertx-mysql-postgresql-client:3.5.2"
+  compile "io.vertx:vertx-shell:3.5.2"
 }
 
 shadowJar {

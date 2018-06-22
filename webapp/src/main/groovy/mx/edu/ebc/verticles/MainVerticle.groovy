@@ -9,7 +9,7 @@ class MainVerticle extends AbstractVerticle {
     vertx.deployVerticle("${path}/webserver.groovy")
     vertx.deployVerticle("${path}/data_access_verticle.groovy")
     //vertx.deployVerticle("${path}/data_access_pg_verticle.groovy")
-    vertx.deployVerticle("mx.edu.ebc.verticles.SomeVerticle")
+    vertx.deployVerticle("mx.edu.ebc.verticles.ShellVerticle")
     println "*** Deploy done 😎 ***"
   }
 }
