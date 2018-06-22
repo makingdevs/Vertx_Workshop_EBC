@@ -1,11 +1,14 @@
 plugins {
   id "groovy"
+  id 'application'
 }
 
 repositories {
   mavenCentral()
   mavenLocal()
 }
+
+mainClassName = "io.vertx.core.Launcher"
 
 dependencies {
   compile "io.vertx:vertx-lang-groovy:3.5.2"
