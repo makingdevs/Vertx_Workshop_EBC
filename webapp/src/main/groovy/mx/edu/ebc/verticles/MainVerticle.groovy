@@ -8,6 +8,8 @@ class MainVerticle extends AbstractVerticle {
     String path = "src/main/groovy/mx/edu/ebc/verticles"
     vertx.deployVerticle("${path}/webserver.groovy")
     vertx.deployVerticle("${path}/data_access_verticle.groovy")
+    //vertx.deployVerticle("${path}/data_access_pg_verticle.groovy")
+    vertx.deployVerticle("mx.edu.ebc.verticles.SomeVerticle")
     println "*** Deploy done 😎 ***"
   }
 }
