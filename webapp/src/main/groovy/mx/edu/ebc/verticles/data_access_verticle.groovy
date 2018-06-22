@@ -12,9 +12,11 @@ def mySQLClientConfig = [
 
 def mySQLClient = MySQLClient.createShared(vertx, mySQLClientConfig)
 
-mySQLClient.getConnection { result ->
-  def connection = result.result()
-  connection.query("SELECT * FROM task", { dbResult ->
-    println dbResult.result()
-  })
+vertx.eventBus().consumer("mx.edu.ebc.data.get_tasks"){ message ->
+  mySQLClient.getConnection { result ->
+    def connection = result.result()
+    connection.query("SELECT * FROM task", { dbResult ->
+      println dbResult.result()
+    })
+  }
 }
