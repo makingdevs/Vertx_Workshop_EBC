@@ -1,0 +1,13 @@
+plugins {
+  id "groovy"
+}
+
+repositories {
+  mavenCentral()
+  mavenLocal()
+}
+
+dependencies {
+  compile "io.vertx:vertx-lang-groovy:3.5.2"
+  compile "io.vertx:vertx-mysql-postgresql-client:3.5.2"
+}
