@@ -20,3 +20,13 @@ vertx.eventBus().consumer("mx.edu.ebc.data.get_tasks"){ message ->
     })
   }
 }
+
+vertx.eventBus().consumer("mx.edu.ebc.data.find_one_task"){ message ->
+  mySQLClient.getConnection { result ->
+    def connection = result.result()
+    Integer n = message.body().toInteger()
+    connection.query("SELECT * FROM task WHERE id = ${n}", { dbResult ->
+      println dbResult.result()
+    })
+  }
+}
