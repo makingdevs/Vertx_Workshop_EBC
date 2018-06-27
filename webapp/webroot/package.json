@@ -1,0 +1,11 @@
+{
+  "name": "webapp",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "^4.1.1",
+    "handlebars": "^4.0.11",
+    "vertx-bus-bower": "https://github.com/vert-x3/vertx-bus-bower.git#3.5.2"
+  }
+}
