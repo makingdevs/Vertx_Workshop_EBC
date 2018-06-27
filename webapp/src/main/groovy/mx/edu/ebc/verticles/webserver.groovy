@@ -28,7 +28,13 @@ def route2 = router.route("/bar").handler { routingContext ->
 
 def content = router.route("/public/*").handler(StaticHandler.create().setCachingEnabled(false))
 
-def sockJsHandler = SockJSHandler.create(vertx)
+def options = [
+  inboundPermitteds:[],
+  outboundPermitteds:[
+    address: "mx.edu.ebc.clock"
+  ]
+]
+def sockJsHandler = SockJSHandler.create(vertx).bridge(options)
 router.route("/eventbus/*").handler(sockJsHandler)
 
 httpServer.requestHandler(router.&accept).listen(1234)
