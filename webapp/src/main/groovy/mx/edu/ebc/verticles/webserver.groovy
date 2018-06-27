@@ -29,7 +29,9 @@ def route2 = router.route("/bar").handler { routingContext ->
 def content = router.route("/public/*").handler(StaticHandler.create().setCachingEnabled(false))
 
 def options = [
-  inboundPermitteds:[],
+  inboundPermitteds:[
+    [address: "mx.edu.ebc.request_info"]
+  ],
   outboundPermitteds:[
     [address: "mx.edu.ebc.clock"]
   ]
