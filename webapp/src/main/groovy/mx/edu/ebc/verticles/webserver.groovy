@@ -2,6 +2,7 @@ package mx.edu.ebc.verticles
 
 import io.vertx.ext.web.Router
 import io.vertx.ext.web.handler.StaticHandler
+import io.vertx.ext.web.handler.sockjs.SockJSHandler
 
 httpServer = vertx.createHttpServer()
 
@@ -26,5 +27,8 @@ def route2 = router.route("/bar").handler { routingContext ->
 }
 
 def content = router.route("/public/*").handler(StaticHandler.create().setCachingEnabled(false))
+
+def sockJsHandler = SockJSHandler.create(vertx)
+router.route("/eventbus/*").handler(sockJsHandler)
 
 httpServer.requestHandler(router.&accept).listen(1234)
