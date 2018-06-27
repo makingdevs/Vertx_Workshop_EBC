@@ -5,19 +5,31 @@
     <title></title>
   </head>
   <body>
-    <h1>Hola mundo</h1>
-    <h2>Como estas?</h2>
+    <h1>Scrum Board</h1>
     <div id="clock"></div>
+
+    <h2>Nueva tarea</h2>
+    <form action="">
+      <label for="task_name">Tarea</label>
+      <input type="text" name="description">
+      <button type="submit">Crear</button>
+    </form>
+
+    <h2>Tus tareas</h2>
+    <div id="task_list"></div>
+
     <script id="clock-template" type="text/x-handlebars-template">
       <h3>{{body}}</h3>
     </script>
-    <ul>
-      <li>Elemento</li>
-    </ul>
-    <form action="/foo" method="post">
-      <input type="text" name="var">
-      <button type="submit">Enviar</button>
-    </form>
+
+    <script id="task-list-template" type="text/x-handlebars-template">
+      <ul>
+        {{#each tasks}}
+        <li> <checkbox/> {{description}} - {{status}}</li>
+        {{/each}}
+      </ul>
+    </script>
+
     <script src="public/node_modules/jquery/dist/jquery.js"></script>
     <script src="public/node_modules/handlebars/dist/handlebars.js"></script>
     <script src="//cdn.jsdelivr.net/sockjs/0.3.4/sockjs.min.js"></script>
