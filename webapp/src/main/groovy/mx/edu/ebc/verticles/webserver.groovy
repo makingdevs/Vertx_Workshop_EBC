@@ -31,7 +31,7 @@ def content = router.route("/public/*").handler(StaticHandler.create().setCachin
 def options = [
   inboundPermitteds:[],
   outboundPermitteds:[
-    address: "mx.edu.ebc.clock"
+    [address: "mx.edu.ebc.clock"]
   ]
 ]
 def sockJsHandler = SockJSHandler.create(vertx).bridge(options)
