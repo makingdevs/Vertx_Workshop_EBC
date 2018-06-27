@@ -30,7 +30,8 @@ def content = router.route("/public/*").handler(StaticHandler.create().setCachin
 
 def options = [
   inboundPermitteds:[
-    [address: "mx.edu.ebc.request_info"]
+    [address: "mx.edu.ebc.request_info"],
+    [addressRegex: "mx.edu.ebc.task\\..+"]
   ],
   outboundPermitteds:[
     [address: "mx.edu.ebc.clock"]

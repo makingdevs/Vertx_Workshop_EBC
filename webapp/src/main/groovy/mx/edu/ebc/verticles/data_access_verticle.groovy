@@ -11,7 +11,6 @@ def mySQLClientConfig = [
   database: "scrumboard"
 ]
 
-
 def mySQLClient = MySQLClient.createShared(vertx, mySQLClientConfig)
 
 vertx.eventBus().consumer("mx.edu.ebc.data.get_tasks"){ message ->
@@ -43,7 +42,6 @@ vertx.eventBus().consumer("mx.edu.ebc.data.save_task"){ message ->
     })
   }
 }
-
 
 vertx.eventBus().consumer("mx.edu.ebc.data.send_to_save"){ message ->
   Task task = new Task(description: "${new Date()}", status: "TODO")

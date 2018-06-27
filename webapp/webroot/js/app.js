@@ -8,5 +8,8 @@ eb.onopen = function(){
     var html = template(message);
     $("#clock").html(html);
   });
+  eb.send("mx.edu.ebc.task.all", {}, function(error, msg){
+    console.log(msg);
+  });
   console.log("Ready 😎 ...");
 };
