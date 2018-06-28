@@ -9,8 +9,8 @@ vertx.eventBus().consumer("mx.edu.ebc.massive_processing"){ msg ->
   vertx.fileSystem().readFile("src/main/resources/2010-02.csv", { result ->
     if (result.succeeded()) {
       def lines = result.result().toString().split("\n")
-      trips.size = lines.size()
-      lines.each { l ->
+      trips.size = lines[1..-1].size()
+      lines[1..-1].each { l ->
         vertx.eventBus().send("mx.edu.ebc.do_operation", l)
       }
     } else {
@@ -20,7 +20,6 @@ vertx.eventBus().consumer("mx.edu.ebc.massive_processing"){ msg ->
 }
 
 vertx.eventBus().consumer("mx.edu.ebc.massive_processing_done"){ msg ->
-  println msg.body()
   println "${trips.size} == ${trips.processed.size()}"
   if(trips.size == trips.processed.size()){
     println "*** Done 👊 ***"
