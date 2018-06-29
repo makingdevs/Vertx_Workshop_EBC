@@ -14,6 +14,9 @@ eb.onopen = function(){
     var html = template({tasks: message.body});
     $("#task_list").html(html);
   });
+  eb.registerHandler("mx.edu.ebc.task.save_confirm", function(error, message){
+    console.log("Task saved !!! " + message);
+  });
   eb.send("mx.edu.ebc.task.all", {});
   console.log("Ready 😎 ...");
 };
