@@ -42,8 +42,3 @@ vertx.eventBus().consumer("mx.edu.ebc.data.save_task"){ message ->
     })
   }
 }
-
-vertx.eventBus().consumer("mx.edu.ebc.data.send_to_save"){ message ->
-  Task task = new Task(description: "${new Date()}", status: "TODO")
-  vertx.eventBus().send("mx.edu.ebc.data.save_task", JsonObject.mapFrom(task))
-}
