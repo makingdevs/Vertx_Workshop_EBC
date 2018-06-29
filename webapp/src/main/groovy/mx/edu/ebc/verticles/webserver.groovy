@@ -34,7 +34,8 @@ def options = [
     [addressRegex: "mx.edu.ebc.task\\..+"]
   ],
   outboundPermitteds:[
-    [address: "mx.edu.ebc.clock"]
+    [address: "mx.edu.ebc.clock"],
+    [addressRegex: "mx.edu.ebc.task\\..+"]
   ]
 ]
 def sockJsHandler = SockJSHandler.create(vertx).bridge(options)

@@ -8,25 +8,19 @@ eb.onopen = function(){
     var html = template(message);
     $("#clock").html(html);
   });
-  eb.send("mx.edu.ebc.task.all", {}, function(error, msg){
+  eb.registerHandler("mx.edu.ebc.task.render_all", function(error, message){
     var source = $("#task-list-template").html();
     var template = Handlebars.compile(source);
-    var html = template({tasks: msg.body});
+    var html = template({tasks: message.body});
     $("#task_list").html(html);
   });
+  eb.send("mx.edu.ebc.task.all", {});
   console.log("Ready 😎 ...");
 };
 
 $("#new_task").on("submit", function(event){
   var description = $("input[name=description]").val()
   var task = { 'description': description, 'status': 'TODO' }
-  eb.send("mx.edu.ebc.task.save", task, function(error, msg){
-    eb.send("mx.edu.ebc.task.all", {}, function(error, msg){
-      var source = $("#task-list-template").html();
-      var template = Handlebars.compile(source);
-      var html = template({tasks: msg.body});
-      $("#task_list").html(html);
-    });
-  })
+  eb.send("mx.edu.ebc.task.save", task);
   event.preventDefault();
 });

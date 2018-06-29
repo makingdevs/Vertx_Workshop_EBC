@@ -11,7 +11,8 @@ vertx.eventBus().consumer("mx.edu.ebc.task.all"){ msg ->
     }.collect { o ->
       JsonObject.mapFrom(o)
     }
-    msg.reply(response)
+    // msg.reply(response)
+    vertx.eventBus().publish("mx.edu.ebc.task.render_all", response)
   }
 }
 
