@@ -15,8 +15,10 @@ vertx.eventBus().consumer("mx.edu.ebc.task.all"){ msg ->
   }
 }
 
-
 vertx.eventBus().consumer("mx.edu.ebc.task.save"){ msg ->
   println msg.body()
-  vertx.eventBus().send("mx.edu.ebc.data.save_task", msg.body())
+  vertx.eventBus().send("mx.edu.ebc.data.save_task", msg.body()) {res ->
+    println res.result()?.body()
+    msg.reply JsonObject.mapFrom(res.result()?.body())
+  }
 }

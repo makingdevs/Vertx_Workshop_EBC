@@ -21,7 +21,12 @@ $("#new_task").on("submit", function(event){
   var description = $("input[name=description]").val()
   var task = { 'description': description, 'status': 'TODO' }
   eb.send("mx.edu.ebc.task.save", task, function(error, msg){
-    console.log("Saved ....");
+    eb.send("mx.edu.ebc.task.all", {}, function(error, msg){
+      var source = $("#task-list-template").html();
+      var template = Handlebars.compile(source);
+      var html = template({tasks: msg.body});
+      $("#task_list").html(html);
+    });
   })
   event.preventDefault();
 });
