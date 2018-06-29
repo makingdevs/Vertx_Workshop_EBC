@@ -9,7 +9,10 @@ eb.onopen = function(){
     $("#clock").html(html);
   });
   eb.send("mx.edu.ebc.task.all", {}, function(error, msg){
-    console.log(msg);
+    var source = $("#task-list-template").html();
+    var template = Handlebars.compile(source);
+    var html = template({tasks: msg.body});
+    $("#task_list").html(html);
   });
   console.log("Ready 😎 ...");
 };
