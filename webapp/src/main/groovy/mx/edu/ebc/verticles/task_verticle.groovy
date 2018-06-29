@@ -7,7 +7,15 @@ vertx.eventBus().consumer("mx.edu.ebc.task.all"){ msg ->
   println "*"*100
   println msg
   println "*"*100
-  def response = [new Task(description: "Task 1", status: "TODO"), new Task(description:"Task 2", status: "WIP")].collect { t -> JsonObject.mapFrom(t) }
-  msg.reply(response)
+  vertx.eventBus().send("mx.edu.ebc.data.get_tasks", null){ reply ->
+    println reply.result().body()
+    def dbResults = reply.result().body()["results"]
+    def response = dbResults.collect { r ->
+      new Task(id: r[0],description: r[1], status: r[2])
+    }.collect { o ->
+      JsonObject.mapFrom(o)
+    }
+    msg.reply(response)
+  }
 }
 

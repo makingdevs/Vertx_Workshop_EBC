@@ -17,7 +17,7 @@ vertx.eventBus().consumer("mx.edu.ebc.data.get_tasks"){ message ->
   mySQLClient.getConnection { result ->
     def connection = result.result()
     connection.query("SELECT * FROM task", { dbResult ->
-      println dbResult.result()
+      message.reply dbResult.result()
     })
   }
 }
