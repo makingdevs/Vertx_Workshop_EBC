@@ -17,8 +17,11 @@ vertx.eventBus().consumer("mx.edu.ebc.task.all"){ msg ->
 }
 
 vertx.eventBus().consumer("mx.edu.ebc.task.save"){ msg ->
-  vertx.eventBus().send("mx.edu.ebc.data.save_task", msg.body()) {res ->
-    println res.result()?.body()
-    msg.reply JsonObject.mapFrom(res.result()?.body())
-  }
+  vertx.eventBus().send("mx.edu.ebc.data.save_task", msg.body())
+}
+
+vertx.eventBus().consumer("mx.edu.ebc.task.save_done"){ msg ->
+    println msg.body()
+    vertx.eventBus().send("mx.edu.ebc.task.save_confirm", JsonObject.mapFrom(msg.body()))
+    vertx.eventBus().send("mx.edu.ebc.task.all", null)
 }
