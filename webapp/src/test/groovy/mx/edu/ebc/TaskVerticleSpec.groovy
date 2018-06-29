@@ -27,6 +27,25 @@ class TaskVerticleSpec extends Specification {
     }
   }
 
+  def "Saving a task with a message"(){
+    given:
+      def isDone = false
+      vertx.eventBus().consumer("mx.edu.ebc.data.save_task") { msg ->
+        println "Guardo..."
+        def response = [done: true]
+        isDone = "nada"
+        vertx.eventBus().send("mx.edu.ebc.task.save_done", response)
+      }
+    when:
+      vertx.eventBus().send("mx.edu.ebc.task.save", [description: "some", status: "todo"])
+      conditions.eventually {
+        assert isDone
+      }
+    then:
+      noExceptionThrown()
+  }
+
+  @Ignore
   def "should be double eventually"(){
     given:
       def value = 5
