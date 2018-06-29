@@ -38,7 +38,8 @@ vertx.eventBus().consumer("mx.edu.ebc.data.save_task"){ message ->
     def json = new JsonObject(message.body())
     def params = [json.map.description, json.map.status]
     connection.updateWithParams("INSERT INTO task(description, status, date_created) values(?,?,now())", params, { dbResult ->
-      message.reply dbResult.result()
+      //message.reply dbResult.result()
+      vertx.eventBus().send("mx.edu.ebc.task.save_done", dbResult.result())
     })
   }
 }
