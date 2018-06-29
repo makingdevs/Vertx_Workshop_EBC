@@ -16,3 +16,12 @@ eb.onopen = function(){
   });
   console.log("Ready 😎 ...");
 };
+
+$("#new_task").on("submit", function(event){
+  var description = $("input[name=description]").val()
+  var task = { 'description': description, 'status': 'TODO' }
+  eb.send("mx.edu.ebc.task.save", task, function(error, msg){
+    console.log("Saved ....");
+  })
+  event.preventDefault();
+});
